@@ -89,7 +89,7 @@ In the `onion.config.json` example above, we have four layers: `domain-model`, `
 
 The configuration above enforces the onion architecture. The onion architecture takes its name from its representation as concentric circles:
 
-![](./img/onion.jpeg)
+![](https://raw.githubusercontent.com/remojansen/fresh-onion/refs/heads/main/img/onion.jpeg)
 
 In the onion architecture, the innermost circle represents the domain model, which contains the core business logic of your application. The next circle represents domain services, which contain the use cases that operate on the domain model. The outermost circle represents application services, which contain the application-specific logic that coordinates the domain services. Finally, the infrastructure layer contains the implementation details, such as database access, logging, and external services.
 
@@ -99,7 +99,7 @@ The onion architecture enforces a strict dependency rule:
 
 This rule ensures that the core business logic remains isolated from the implementation details, making the codebase easier to maintain and test.
 
-![](./img/imports.png)
+![](https://raw.githubusercontent.com/remojansen/fresh-onion/refs/heads/main/img/imports.png)
 
 The configuration file above enforces this rule by specifying the allowed imports for each layer. For example, the `domain-services` layer is allowed to import from the `domain-model` layer, but not from the `app-services` or `infrastructure` layers.
 
@@ -121,4 +121,4 @@ Contributions are welcome! If you have any ideas, suggestions, or bug reports, p
 
 5. Run `npm run coverage` to generate a coverage report.
 
-![](./img/coverage.png)
+![](https://raw.githubusercontent.com/remojansen/fresh-onion/refs/heads/main/img/coverage.png)
