@@ -1,0 +1,26 @@
+{
+  "layers": {
+    "domain-model": "./src/domain-model",
+    "domain-services": "./src/domain-services",
+    "app-services": "./src/app-services",
+    "infrastructure": "./src/infrastructure"
+  },
+  "rules": [
+    {
+      "from": "domain-model",
+      "allowedImports": []
+    },
+    {
+      "from": "domain-services",
+      "allowedImports": ["domain-model"]
+    },
+    {
+      "from": "app-services",
+      "allowedImports": ["domain-model", "domain-services"]
+    },
+    {
+      "from": "infrastructure",
+      "allowedImports": ["domain-model", "domain-services", "app-services"]
+    }
+  ]
+}
