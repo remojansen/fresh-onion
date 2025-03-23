@@ -1,0 +1,10 @@
+demos
+coverage
+.nyc_output
+img
+src
+jest.config.js
+tsconfig.json
+dist/demos
+dist/index.test.js
+dist/index.test.js.map
