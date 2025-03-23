@@ -5,6 +5,6 @@ img
 src
 jest.config.js
 tsconfig.json
-dist/demos
-dist/index.test.js
-dist/index.test.js.map
+dist/src/demos
+dist/src/index.test.js
+dist/src/index.test.js.map
