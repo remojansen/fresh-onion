@@ -1,6 +1,6 @@
 {
   "name": "fresh-onion",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "bin": "./dist/src/index.js",
   "scripts": {
@@ -8,9 +8,20 @@
     "test": "jest",
     "coverage": "nyc --reporter=html --reporter=text npm run test"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "onion-architecture",
+    "clean-architecture",
+    "typescript",
+    "node.js",
+    "layered-architecture",
+    "referential-integrity",
+    "monorepo",
+    "architecture-enforcement",
+    "import-validation",
+    "software-architecture"
+  ],
+  "author": "Remo H. Jansen",
+  "license": "MIT",
   "dependencies": {
     "typescript": "^5.8.2"
   },
