@@ -1,12 +1,13 @@
 {
   "name": "fresh-onion",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "bin": "./dist/src/index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "jest",
-    "coverage": "nyc --reporter=html --reporter=text npm run test"
+    "coverage": "nyc --reporter=html --reporter=text npm run test",
+    "publish": "npm run build && npm publish"
   },
   "keywords": [
     "onion-architecture",
