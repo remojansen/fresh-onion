@@ -24,7 +24,7 @@ If it finds any violations, it will report them to you, along with the exact fil
 
 ## How can I use it?
 
-### 1 Create a `onion.config.json` file:
+### 1. Create a `onion.config.json` file:
 
 ```json
 {
