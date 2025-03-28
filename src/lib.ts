@@ -121,7 +121,13 @@ export async function getTsFilesInLayer(
   return results;
 }
 
-export function getImportsInTsFile(tsFile: Path, baseDir: string): Path[] {
+interface ImportDetails {
+  normalizedPath: Path;
+  line: number;
+  character: number;
+};
+
+export function getImportsInTsFile(tsFile: Path, baseDir: string): ImportDetails[] {
   const sourceCode = ts.sys.readFile(tsFile);
   if (!sourceCode) return [];
 
@@ -132,7 +138,7 @@ export function getImportsInTsFile(tsFile: Path, baseDir: string): Path[] {
     true
   );
 
-  const imports: Path[] = [];
+  const imports: ImportDetails[] = [];
 
   sourceFile.forEachChild((node) => {
     if (
@@ -147,7 +153,19 @@ export function getImportsInTsFile(tsFile: Path, baseDir: string): Path[] {
       const tsFileDir = path.dirname(tsFile);
       const absoluteImportPath = path.resolve(tsFileDir, importPath);
       const normalizedPath = path.relative(baseDir, absoluteImportPath);
-      imports.push(normalizedPath);
+      const line = ts.getLineAndCharacterOfPosition(
+        sourceFile,
+        node.moduleSpecifier.getStart()
+      ).line;
+      const character = ts.getLineAndCharacterOfPosition(
+        sourceFile,
+        node.moduleSpecifier.getStart()
+      ).character;
+      imports.push({
+        normalizedPath,
+        line,
+        character
+      });
     }
   });
 
@@ -170,7 +188,7 @@ export async function checkLayer(layer: Layer, config: OnionConfig, baseDir: str
       const importedLayer = Object.entries(config.layers).find(
         ([_, layerPath]) => {
           const resolvedPath = path.resolve(baseDir, layerPath);
-          const absoluteImport = path.resolve(baseDir, imported);
+          const absoluteImport = path.resolve(baseDir, imported.normalizedPath);
           return absoluteImport.startsWith(resolvedPath);
         }
       )?.[0];
@@ -188,11 +206,10 @@ export async function checkLayer(layer: Layer, config: OnionConfig, baseDir: str
       }
 
       if (!rule.allowedImports.includes(importedLayer)) {
+        const filePath = path.relative(baseDir, tsFile)  + ":" + imported.line + ":" + imported.character;
+        const importPath = path.relative(baseDir, imported.normalizedPath) + ".ts";
         console.log(
-          `❌ "${layer}" is importing from "${importedLayer}" via "${path.resolve(
-            baseDir,
-            imported
-          )}.ts"`
+          `❌ ${layer} (${filePath}) is importing from ${importedLayer} (${importPath})`
         );
         hasErrors = true;
       }

@@ -36,7 +36,7 @@ describe("fresh-onion", () => {
         'Using config <PROJECT_ROOT>/demos/rotten/onion.config.json'
       );
       expect(normalized).toContain(
-        `❌ \"app-services\" is importing from \"infrastructure\" via \"<PROJECT_ROOT>/demos/rotten/src/infrastructure/storage/some-repository-imp.ts\"`
+        `❌ app-services (src/app-services/some-app-service.ts:0:45) is importing from infrastructure (src/infrastructure/storage/some-repository-imp.ts)`
       );
       expect(normalized).toContain("👎 Rotten 🧅");
     }
