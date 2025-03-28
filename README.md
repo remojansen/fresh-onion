@@ -71,9 +71,9 @@ If there are issues you will see something like the following in the console:
 
 ```sh
 Using config /api/onion.config.json
-❌ "app-services" is importing from "infrastructure" via "/api/src/infrastructure/auth/jwt.ts"
-❌ "app-services" is importing from "infrastructure" via "/api/src/infrastructure/logging.ts"
-👎 Rotten 🧅 detected
+❌ app-services (src/app-services/auth/auth-service.ts:19:42) is importing from infrastructure (src/infrastructure/logging.ts)
+❌ app-services (src/app-services/auth/two-factor-service.ts:11:42) is importing from infrastructure (src/infrastructure/logging.ts)
+👎 Rotten 🧅
 ```
 
 If everything is fine you will see:
